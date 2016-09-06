@@ -62,8 +62,29 @@ public class PointConnector {
 	public void addPoint(int x, int y) { this.points.add(new Point(x, y)); }
 	
 	
-	/** Starts the point connection process. */
-	public void connectBy(ConnectionType type) {
+	/** Starts the point connection process. 
+	 * @param type -- The way that the algorithm should connect the dots by.
+	 * @param proximity -- The farthest radial distance that any two points can be from each other and still connect. */
+	public void connectBy(ConnectionType type, int proximity) {
+		
+		if(type == ConnectionType.SAME_X)
+			ConnectBySameX();
+		if(type == ConnectionType.SAME_Y)
+			ConnectBySameY();
+		//if(type == ConnectionType.NEAREST_NEIGHBOR)
+			// There is no nearest neighbor method yet
+	}
+	
+	
+	/** Connects the points based on the which ones are both near each other and have the same X values. Will return a list
+	 * of Point objects that the user can then use to see which points are connected to other points. */
+	private void ConnectBySameX() {
+		
+	}
+	
+	
+	/** Connects the points based on the which ones are both near each other and have the same Y values. */
+	private void ConnectBySameY() {
 		
 	}
 }
