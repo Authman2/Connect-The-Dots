@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import MAIN.PointConnector.ConnectionType;
+
 public class ConnectTheDots {
 
 	public static void main(String[] args) {
@@ -25,6 +27,7 @@ public class ConnectTheDots {
 		points.add(new Point(19,13));
 		points.add(new Point(135,120));
 		points.add(new Point(89,135));
+		points.add(new Point(5,150));
 		
 
 		// Create the panel that draws all of the points from the list above
@@ -35,7 +38,7 @@ public class ConnectTheDots {
 		
 		// Create a new PointConnector object
 		PointConnector pointConnector = new PointConnector(points);
-		
+		pointConnector.connectBy(ConnectionType.SAME_X, 200);
 		
 		
 		

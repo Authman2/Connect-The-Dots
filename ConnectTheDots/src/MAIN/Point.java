@@ -11,14 +11,23 @@ public class Point extends java.awt.Point {
 	ArrayList<Point> connectedPoints;
 	
 	
+	
 	/** New point object. */
-	public Point() {}
+	public Point() { connectedPoints = new ArrayList<Point>(); }
+	
 	
 	/** New point object with coordinates x and y. 
 	 * @param x -- The x coordinate.
 	 * @param y -- The y coordinate. */
-	public Point(int x, int y) { super(x,y); }
+	public Point(int x, int y) { super(x,y); connectedPoints = new ArrayList<Point>(); }
 
+	
+	
+	////////// Methods ///////////
+	
+	/** Connects another point, p, to this point.
+	 * @param p -- The point to connect to this one. */
+	public void connectPoint(Point p) { connectedPoints.add(p); }
 	
 	
 	////////// Getters ///////////
