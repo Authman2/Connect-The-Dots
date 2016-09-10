@@ -38,7 +38,7 @@ public class ConnectTheDots {
 		
 		// Create a new PointConnector object
 		PointConnector pointConnector = new PointConnector(points);
-		pointConnector.connectBy(ConnectionType.SAME_X, 200);
+		pointConnector.connectBy(ConnectionType.PROXIMITY, 50);
 		
 		
 		

@@ -34,7 +34,7 @@ public class PointConnector {
 		
 		/** Connects a point to one or more points based on proximity alone. If there are any points within the specified
 		 * distance from the point in question, then those two points will be connected. */
-		NEAREST_NEIGHBOR,
+		PROXIMITY,
 	}
 	
 	
@@ -71,15 +71,15 @@ public class PointConnector {
 			ConnectBySameX(proximity);
 		if(type == ConnectionType.SAME_Y)
 			ConnectBySameY(proximity);
-		//if(type == ConnectionType.NEAREST_NEIGHBOR)
-			// There is no nearest neighbor method yet
+		if(type == ConnectionType.PROXIMITY)
+			ConnectByProximity(proximity);
 	}
 	
 	
 	/** Connects the points based on the which ones are both near each other and have the same X values. Will return a list
 	 * of Point objects that the user can then use to see which points are connected to other points. 
 	 * @return points -- The same list that was inserted at the beginning of the algorithm, now with connected points. */
-	private ArrayList<Point> ConnectBySameX(int proximity) {
+	private void ConnectBySameX(int proximity) {
 		
 		for(int i = 0; i < points.size(); i++) {
 			
@@ -101,12 +101,33 @@ public class PointConnector {
 			}
 		}
 		
-		return points;
 	}
 	
 	
 	/** Connects the points based on the which ones are both near each other and have the same Y values. */
 	private void ConnectBySameY(int proximity) {
+		
+	}
+	
+	
+	/** Connects the points based on how close they are to each other. */
+	private void ConnectByProximity(int proximity) {
+		
+		for(int i = 0; i < points.size(); i++) {
+			
+			// Start with the current point at "i".
+			Point pointi = points.get(i);
+			
+			for(int j = 0; j < points.size(); j++) {
+				
+				// Check if the points are close enough to each other.
+				if(points.get(j).distance(pointi) <= proximity) {
+				
+					pointi.connectPoint(points.get(j));
+					
+				}
+			}
+		}
 		
 	}
 	
