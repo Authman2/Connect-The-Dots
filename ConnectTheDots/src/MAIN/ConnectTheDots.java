@@ -26,6 +26,7 @@ public class ConnectTheDots {
 		points.add(new Point(80,90));
 		points.add(new Point(19,13));
 		points.add(new Point(135,120));
+		points.add(new Point(110,110));
 		points.add(new Point(89,135));
 		points.add(new Point(5,150));
 		

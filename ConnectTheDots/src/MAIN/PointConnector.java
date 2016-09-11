@@ -107,6 +107,26 @@ public class PointConnector {
 	/** Connects the points based on the which ones are both near each other and have the same Y values. */
 	private void ConnectBySameY(int proximity) {
 		
+		for(int i = 0; i < points.size(); i++) {
+			
+			// Start with the current point at "i".
+			Point pointi = points.get(i);
+			
+			for(int j = 0; j < points.size(); j++) {
+				
+				// After looping through every other point, add it as a connected point if it has the same "y" value.
+				if(points.get(j).y == pointi.y) {
+					
+					// Check if the points are close enough to each other.
+					if(points.get(j).distance(pointi) <= proximity) {
+					
+						pointi.connectPoint(points.get(j));
+						
+					}
+				}
+			}
+		}
+		
 	}
 	
 	
