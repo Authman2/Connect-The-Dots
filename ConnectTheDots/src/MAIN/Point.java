@@ -1,9 +1,29 @@
 package MAIN;
+/****************************************************************************
+ *																			*
+ *	Author: Adeola Uthman													*
+ * 	File: Point.java														*
+ * 	Date: September 4, 2016													*
+ *  																		*
+ *  Description: An extension to the java.awt.Point class. This Point 		*
+ *  class allows for two points to be connected, and contains a list of 	*
+ *  potential points, which are points that this point could connect to.	*
+ *  																		*
+ *  License: 																*
+ *  Copyright (C) 2016  Adeola Uthman										*
+ *  This program is free software: you can redistribute it and/or modify	*
+ *  it under the terms of the GNU General Public License as published by	*
+ *  the Free Software Foundation, either version 3 of the License, or		*
+ *  (at your option) any later version.										*
+ *  This program is distributed in the hope that it will be useful,			*
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of			*
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the			*
+ *  GNU General Public License for more details.							*
+ *  																		*
+ ****************************************************************************/
 
 import java.util.ArrayList;
 
-/** An extention to the java.awt.Point class. This Point class allows the user to see which other points this one is 
- * connected to. */
 public class Point extends java.awt.Point {
 	private static final long serialVersionUID = 1L;
 
