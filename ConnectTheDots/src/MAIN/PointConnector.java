@@ -1,12 +1,16 @@
 package MAIN;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class PointConnector {
 	
 	// An arraylist that contains all of the points that need to be connected.
 	private ArrayList<Point> points;
 	
+	
+	
+	///////// Constructors //////////
 
 	/** Creates an empty object with no points to connect. */
 	public PointConnector() { points = new ArrayList<Point>(); }
@@ -44,7 +48,7 @@ public class PointConnector {
 	public ArrayList<Point> getPoints() { return points; }
 	
 	
-	///////// Methods //////////
+	///////// Setters //////////
 	
 	/** Sets the list of points to have connected to each other. 
 	 * @param points -- The list of coordinate points that need to be connected. */
@@ -80,6 +84,8 @@ public class PointConnector {
 	 * of Point objects that the user can then use to see which points are connected to other points. 
 	 * @return points -- The same list that was inserted at the beginning of the algorithm, now with connected points. */
 	private void ConnectBySameX(int proximity) {
+		// A temporary list of points.
+		LinkedList<Point> tempPoints = new LinkedList<Point>();
 		
 		for(int i = 0; i < points.size(); i++) {
 			
@@ -93,12 +99,26 @@ public class PointConnector {
 					
 					// Check if the points are close enough to each other.
 					if(points.get(j).distance(pointi) <= proximity) {
-					
-						pointi.connectPoint(points.get(j));
+						
+						// Add points to the temporary list to be checked later.
+						tempPoints.add(points.get(i));
 						
 					}
 				}
 			}
+			
+			// Connect the one with the shortest distance.
+			int dist = (int) points.get(0).distance(pointi);
+			Point temp = null;
+			for(Point p : tempPoints) {
+				if(p.distanceSq(pointi) <= dist) {
+					dist = (int) p.distance(pointi);
+					temp = p;
+				}
+			}
+			
+			// Connect the points.
+			pointi.connectPoint(temp);
 		}
 		
 	}
@@ -106,6 +126,8 @@ public class PointConnector {
 	
 	/** Connects the points based on the which ones are both near each other and have the same Y values. */
 	private void ConnectBySameY(int proximity) {
+		// A temporary list of points.
+		LinkedList<Point> tempPoints = new LinkedList<Point>();
 		
 		for(int i = 0; i < points.size(); i++) {
 			
@@ -114,17 +136,31 @@ public class PointConnector {
 			
 			for(int j = 0; j < points.size(); j++) {
 				
-				// After looping through every other point, add it as a connected point if it has the same "y" value.
+				// After looping through every other point, add it as a connected point if it has the same "x" value.
 				if(points.get(j).y == pointi.y) {
 					
 					// Check if the points are close enough to each other.
 					if(points.get(j).distance(pointi) <= proximity) {
-					
-						pointi.connectPoint(points.get(j));
+						
+						// Add points to the temporary list to be checked later.
+						tempPoints.add(points.get(i));
 						
 					}
 				}
 			}
+			
+			// Connect the one with the shortest distance.
+			int dist = (int) points.get(0).distance(pointi);
+			Point temp = null;
+			for(Point p : tempPoints) {
+				if(p.distanceSq(pointi) <= dist) {
+					dist = (int) p.distance(pointi);
+					temp = p;
+				}
+			}
+			
+			// Connect the points.
+			pointi.connectPoint(temp);
 		}
 		
 	}
@@ -133,22 +169,62 @@ public class PointConnector {
 	/** Connects the points based on how close they are to each other. */
 	private void ConnectByProximity(int proximity) {
 		
-		for(int i = 0; i < points.size(); i++) {
-			
-			// Start with the current point at "i".
-			Point pointi = points.get(i);
-			
-			for(int j = 0; j < points.size(); j++) {
+		// Loop through every single point.
+		for(Point initialPoint : points) {
+
+			// Loop through all of the points again.
+			for(Point otherPoint : points) {
 				
 				// Check if the points are close enough to each other.
-				if(points.get(j).distance(pointi) <= proximity) {
-				
-					pointi.connectPoint(points.get(j));
+				if(initialPoint.distanceTo(otherPoint) < proximity) {
+					
+					// Add points to the temporary list to be checked later.
+					initialPoint.addPotentialPoint(otherPoint);
 					
 				}
-			}
+			} // End of inside for-loop			
+			
+			// Connect initialPoint to the one with the shortest distance.
+			Point nearest = getNearestPoint(initialPoint, initialPoint.getPotentialPoints());
+			initialPoint.connectPoint(nearest);
+			
+			// Print out the point that this point is connected to.
+			System.out.println(initialPoint + " is connected to " + initialPoint.getConnectedPoint());
+			
+			
+		} // End of outside for-loop
+	}
+	
+	
+	/** Returns the point with the shortest distance to "p".
+	 * @param p -- The point to connect.
+	 * @param points -- The list of points to check for closeness.
+	 * @return The point with the shortest distance to "p". */
+	private Point getNearestPoint(Point p, ArrayList<Point> points) {
+		// This can be a double, assumming no two points are separated by a distance of Integer.MAX_VALUE.
+		double dist = Integer.MAX_VALUE;
+		int nearestIndex = 0;
+		
+		// Just in case it exists in the points list, remove p.
+		if(points.contains(p)) {
+			points.remove(p);
 		}
 		
+		try {
+			for(Point somepoint : points) {
+				if(somepoint.distance(p) <= dist) {
+					dist = somepoint.distance(p);
+					nearestIndex = points.indexOf(somepoint);
+				}
+			}
+		} catch(IndexOutOfBoundsException err) {
+			err.printStackTrace();
+		}
+		return points.get(nearestIndex);
 	}
+	
+	
+	
+	
 	
 } // End of class

@@ -21,10 +21,12 @@ public class ConnectTheDots {
 		// Create a list of points
 		ArrayList<Point> points = new ArrayList<Point>();
 		points.add(new Point(5,20));
+		points.add(new Point(5,15));
+		points.add(new Point(13,25));
 		points.add(new Point(100,70));
 		points.add(new Point(27,5));
 		points.add(new Point(80,90));
-		points.add(new Point(19,13));
+		points.add(new Point(15,13));
 		points.add(new Point(135,120));
 		points.add(new Point(110,110));
 		points.add(new Point(89,135));
@@ -39,7 +41,7 @@ public class ConnectTheDots {
 		
 		// Create a new PointConnector object
 		PointConnector pointConnector = new PointConnector(points);
-		pointConnector.connectBy(ConnectionType.PROXIMITY, 50);
+		pointConnector.connectBy(ConnectionType.PROXIMITY, 100);
 		
 		
 		

@@ -30,14 +30,10 @@ public class DrawingPanel extends JPanel {
 		// Draw a line for each point connection
 		for(Point point : pointsToDraw) {
 			
-			if(!point.getConnectedPoints().isEmpty()) {
+			if(point.getConnectedPoint() != null) {
 				
-				// Loop through all of that point's current connections.
-				for(int i = 0; i < point.getConnectedPoints().size(); i++) {
-					
-					g.drawLine(point.x, point.y, point.getConnectedPoints().get(i).x, point.getConnectedPoints().get(i).y);
-					
-				}
+				g.drawLine(point.x, point.y, point.getConnectedPoint().x, point.getConnectedPoint().y);
+				
 			}
 		}
 	}
