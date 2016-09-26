@@ -31,17 +31,26 @@ public class ConnectTheDots {
 		points.add(new Point(110,110));
 		points.add(new Point(89,135));
 		points.add(new Point(5,150));
+		points.add(new Point(89,90));
+		points.add(new Point(340,200));
+		points.add(new Point(280,239));
+		points.add(new Point(290,320));
+		points.add(new Point(270,90));
+		points.add(new Point(299,90));
+		points.add(new Point(89,230));
+		points.add(new Point(100,256));
+		points.add(new Point(45,324));
 		
 
 		// Create the panel that draws all of the points from the list above
-		DrawingPanel panel = new DrawingPanel(points);
+		DrawingPanel panel = new DrawingPanel(points, true);
 		panel.setBackground(Color.white);
 		tester.add(panel);
 		
 		
 		// Create a new PointConnector object
 		PointConnector pointConnector = new PointConnector(points);
-		pointConnector.connectBy(ConnectionType.PROXIMITY, 10);
+		pointConnector.connectBy(ConnectionType.PROXIMITY, 100);
 		
 		
 		

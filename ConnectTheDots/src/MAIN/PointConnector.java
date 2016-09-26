@@ -125,7 +125,7 @@ public class PointConnector {
 			initialPoint.connectPoint(nearest);
 			
 			// Print out the point that this point is connected to.
-			System.out.println(initialPoint + " is connected to " + initialPoint.getConnectedPoint());
+			//System.out.println(initialPoint + " is connected to " + initialPoint.getConnectedPoint());
 			
 		} // End of outside for-loop
 	}
@@ -153,7 +153,7 @@ public class PointConnector {
 			initialPoint.connectPoint(nearest);
 			
 			// Print out the point that this point is connected to.
-			System.out.println(initialPoint + " is connected to " + initialPoint.getConnectedPoint());
+			//System.out.println(initialPoint + " is connected to " + initialPoint.getConnectedPoint());
 			
 		} // End of outside for-loop
 	}
@@ -182,7 +182,7 @@ public class PointConnector {
 			initialPoint.connectPoint(nearest);
 			
 			// Print out the point that this point is connected to.
-			System.out.println(initialPoint + " is connected to " + initialPoint.getConnectedPoint());
+			//System.out.println(initialPoint + " is connected to " + initialPoint.getConnectedPoint());
 			
 		} // End of outside for-loop
 	}
